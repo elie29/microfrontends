@@ -1,0 +1,14 @@
+{
+  "name": "shell",
+  "version": "1.0.0",
+  "description": "A shell wrapper to include web components",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -l 5000"
+  },
+  "author": "Elie NEHME",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^11.3.2"
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Micro-frontends Shell, Angular, React</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col">
+          <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Micro-frontends Shell, Angular, React</span>
+          </nav>
+          <div class="mb-2 p-3 border">
+            <div class="form-group">
+              <input
+                type="text"
+                onClick="this.setSelectionRange(0, this.value.length)"
+                class="form-control"
+                id="name"
+                placeholder="Name to be sent to angular"
+                value="Teva LAUTIER"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="button" onclick="changeAttribute()">
+              Send hello to Angular
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card text-white bg-dark">
+            <div class="card-header">Angular Web Component</div>
+            <div class="card-body">
+              <h5 class="card-title">Hello World Shadow dom</h5>
+              <ng-custom-element name="Elie NEHME" id="ng-el"></ng-custom-element>
+            </div>
+          </div>
+
+          <div class="card bg-light mt-2">
+            <div class="card-header">React Web Component</div>
+            <div class="card-body">
+              <h5 class="card-title">Hello World Native</h5>
+              <react-el name="Jean Degos" id="react-el"></react-el>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-white bg-info">
+            <div class="card-header">Console</div>
+            <div class="card-body" id="console"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const console = document.getElementById('console');
+
+      function changeAttribute() {
+        console.innerHTML += '- Form was clicked<br/>';
+        document.getElementById('ng-el').setAttribute('name', document.getElementById('name').value);
+      }
+
+      window.onload = function () {
+        document.getElementById('ng-el').addEventListener('clicked', () => {
+          console.innerHTML += '- Angular Component was clicked<br/>';
+        });
+
+        document.getElementById('react-el').addEventListener('onHelloEvt', () => {
+          console.innerHTML += '- React Component was clicked<br/>';
+        });
+      };
+    </script>
+    <!-- Angular -->
+    <script src="/ng-hello/runtime.js" defer></script>
+    <script src="/ng-hello/polyfills.js" defer></script>
+    <script src="/ng-hello/main.js" defer></script>
+    <!-- REACT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/custom-elements-es5-adapter.js"></script>
+    <script src="/react-hello/main.js"></script>
+  </body>
+</html>
